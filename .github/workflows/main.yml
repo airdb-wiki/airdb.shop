@@ -33,7 +33,7 @@ jobs:
           git remote add $domain https://${{ secrets.GithubBotToken }}@github.com/airdb-wiki/$domain
           git remote -v
 
-          #git push -u $domain main:gh-pages --force
+          git push -u $domain main:gh-pages --force || true
         done
       env:
         CI: true
