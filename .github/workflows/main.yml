@@ -20,6 +20,8 @@ jobs:
 
         git config user.name "airdb-bot"
         git config user.email "airdb-bot@airdb.com"
+        git config --local --unset-all "http.https://github.com/.extraheader"
+
 
         domains=("airdb.net" "airdb.cloud")
 
