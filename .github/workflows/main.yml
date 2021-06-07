@@ -23,7 +23,7 @@ jobs:
         git config --local --unset-all "http.https://github.com/.extraheader"
 
 
-        domains=("airdb.net" "airdb.cloud")
+        domains=( "airdb.com" "airdb.net" "airdb.cloud")
 
         for domain in ${domains[@]}; 
         do echo $domain > CNAME
