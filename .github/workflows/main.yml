@@ -1,0 +1,37 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: main
+    - name: Deploy
+      run: |
+        set -x
+        git branch
+
+        git config user.name "airdb-bot"
+        git config user.email "airdb-bot@airdb.com"
+
+        domains=("airdb.net" "airdb.cloud")
+
+        for domain in ${domains[@]}; 
+        do echo $domain > CNAME
+          sed -i "s@airdb.com@$domain@" index.html
+
+          git commit -a -m "Auto Update by actions"
+
+          git remote add $domain https://${{ secrets.GithubBotToken }}@github.com/airdb-wiki/$domain
+          git push -u $domain main:gh-pages --force
+          sleep 1
+        done
+      env:
+        CI: true
