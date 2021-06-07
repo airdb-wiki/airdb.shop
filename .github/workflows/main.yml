@@ -29,7 +29,10 @@ jobs:
 
           git commit -a -m "Auto Update by actions"
 
+          git remote -v
           git remote add $domain https://${{ secrets.GithubBotToken }}@github.com/airdb-wiki/$domain
+          git remote -v
+
           git push -u $domain main:gh-pages --force
           sleep 1
         done
